@@ -19,12 +19,19 @@
             <li class="nav-item">
               <a class="nav-link {% if current_menu is defined and current_menu == 'joueurs' %} active {% endif%}  " href="{{ path('joueur.index') }}"> Recherchez votre pépite </a>
             </li>
+            <!--Si nous sommes connecte, alors nous affichons ceci--> 
             {% if app.user %}
             <li class="nav-item">
               <a class=" text-danger nav-link {% if current_menu is defined and current_menu == 'joueurs' %} active {% endif%}  " href="{{ path('admin.joueur.index') }}"> Gérer les joueurs </a>
             </li>
             <li class="nav-item">
               <a class=" text-danger nav-link {% if current_menu is defined and current_menu == 'langages' %} active {% endif%}  " href="{{ path('admin.langage.index') }}"> Gérer les langages </a>
+            </li>
+            <li class="nav-item">
+              <a class=" text-danger nav-link {% if current_menu is defined and current_menu == 'pays' %} active {% endif%}  " href="{{ path('admin.langage.index') }}"> Gérer les pays </a>
+            </li>
+            <li class="nav-item">
+              <a class=" text-danger nav-link {% if current_menu is defined and current_menu == 'comment' %} active {% endif%}  " href="{{ path('admin.langage.index') }}"> Gérer les commentaires </a>
             </li>
             {% endif %}
           </ul>

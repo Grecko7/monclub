@@ -6,14 +6,15 @@
         <div class="row">
             <div class="col-md-8">
                 {% if joueur.fileName %}
-                <img src="/images/joueurs/{{ joueur.filename }}" style="width: 800; height:530px" alt="card-img-top">
+                <img src="/images/joueurs/{{ joueur.filename }}" style="width: 600px; height:530px" alt="card-img-top">
                 {% else %}
-                <img src="/images/joueurs/empty.jpg" style="width: 800; height:530px" alt="card-img-top">
+                <img src="/images/joueurs/empty.jpg" style="width: 600px; height:530px" alt="card-img-top">
                 {% endif %}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <h1>{{ joueur.Nom }}</h1>
                 <h2> {{ joueur.age }}ans - {{ joueur.taille }}m </h2>
+                <h2> Nationalité : {{ joueur.pays.nationalite }}</h2>
                 <p style ="font-weight: bold">Statut : {{ joueur.LibreType }} </p>
                 <p> GEN : {{ joueur.niveau }} </p>
                 <p style="font-weight: bold"> Prix : {{ joueur.formattedPrix }}€</p>
@@ -26,35 +27,41 @@
 </div>
 <div class="container">
     <div class="row">
+        <div class="col">
+            <h2 class="text-primary">Avis sur le joueur</h2>
+            {% for comment in joueur.comments %}
+            <table class="table text-center">
+                <tr>
+                    écris le (<small>{{comment.createdAt | date('d/m/Y à H:i')}}</small>)
+                </tr>
+                <tr>
+                    <td> {{ comment.auteur}} </td>
+                    <td> {{ comment.contenu | raw }} </td>
+                </tr>
+            </table>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="row mt-3">
         <div class="col-md-8">
-            <h2>Caractéristique</h2>
+            <h2 class="text-primary" >Caractéristique</h2>
             <table class="table table-striped text-center">
                 <tr>
-                    <td> Info</td>
                     <td> {{ joueur.caract }} </td>
-                </tr>
-                <tr>
-                    <td> Technique </td>
-                    <td> *** </td>
-                </tr>
-                <tr>
-                    <td>Combativité</td>
-                    <td> *** </td>
                 </tr>
             </table>
         </div>
         <div class="col-md-4">
-            <h2>Langues parlés</h2>
             <ul class="list-group">
-                <ul class="list-group">
-                    {% for key, langage in joueur.langages %}
-                    <li class="list-group-item {{ key%2 == 0 ? 'list-group-item-secondary':'' }}">{{ langage.nom }}</li>
-                    {% endfor %}
-                </ul>
+                <h2 class="text-primary">Langues parlé</h2>
+                {% for key, langage in joueur.langages %}
+                <li class="list-group-item {{ key%2 == 0 ? 'list-group-item-secondary':'' }}">{{ langage.nom }}</li>
+                {% endfor %}
             </ul>
-        </div>    
-    </div>
+        </div> 
+    </div>   
 </div>
+
 
 {% endblock %}
 
