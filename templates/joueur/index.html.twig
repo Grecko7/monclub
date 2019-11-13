@@ -1,0 +1,55 @@
+{% extends 'base.html.twig'%}
+
+{% block title 'Liste de nos joueurs' %}
+{% block body %}
+<div class="jumbotron text-center">
+    <div class="container">
+        {{ form_start(form)}}
+        <p>Filtres :</p>
+        <div class="form-row">
+            <div class="col">
+                {{ form_row(form.minPrice)}}
+            </div>
+            <div class="col">
+                {{ form_row(form.maxPrice)}}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                {{ form_row(form.minNiveau)}}
+            </div>
+            <div class="col">
+                {{ form_row(form.maxNiveau)}}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-12">
+                {{ form_row(form.langages)}}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-8">
+            </div>
+            <div class="col-2">
+                <button class="btn btn-primary">Affiner votre recherche</button> 
+            </div>            
+            <div class="col-2">
+                <a href="/acquisition" class="btn btn-danger">Supprimer vos filtres sélectionné</a>  
+            </div>  
+        </div>
+    </div>
+    {{ form_end(form)}}      
+</div>
+<div class="container">
+    <div class="row">
+        {% for joueur in joueurs %}
+        <div class="col-md-4">
+            {% include "joueur/_joueur.html.twig" %}
+        </div>
+        {% endfor %}
+    </div>
+    <div class="pagination">
+        {{ knp_pagination_render(joueurs) }}
+    </div>
+</div>
+{% endblock %}  

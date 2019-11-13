@@ -1,0 +1,45 @@
+{% extends 'base.html.twig'%}
+
+{% block title ' joueurs' %}
+
+{% block body %}
+<div class="container mt-4 text-center">
+    <h1 class="text-primary"> Gérer les joueurs</h1>
+    {% for message in app.flashes('success') %}
+   <div class="alert alert-success">
+       {{ message }}
+   </div>
+    {% endfor %}
+    <div class="text-right mb-2">
+            <a href="{{ path('admin.joueur.new')}}" class="btn btn-primary">
+                Recenser votre pépite
+            </a>
+        </div>
+    <table class="table table-stripped text-center">
+        <thead >
+            <tr>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for joueur in joueurs %}
+            <tr>
+                <td> {{joueur.nom}} </td>
+                <td> 
+                    <a href="{{ path('admin.joueur.edit', {id: joueur.id}) }}" class="btn btn-secondary"> Éditer </a>
+                    <form method='post' action="{{ path('admin.joueur.delete', {id: joueur.id}) }}" style="display: inline-block" onsubmit="return confirm('Cette action va supprimer {{joueur.nom}} . Continuer?')">
+                        <input type="hidden" name ="_method" value="DELETE">
+                        <input type="hidden" name ="_token" value="{{ csrf_token('delete' ~ joueur.id) }}">
+                        <button class="btn btn-danger">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}  

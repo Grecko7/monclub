@@ -1,0 +1,24 @@
+ {{ form_start(form) }}
+ <div class="row">
+    <div class="col-md-4">{{ form_row(form.Nom) }}</div>
+    <div class="col-md-4">{{ form_row(form.Age) }}</div>
+    <div class="col-md-4">{{ form_row(form.Taille) }}</div>
+</div>
+<div class="row">
+    <div class="col-md-4">{{ form_row(form.Niveau) }}</div>
+    <div class="col-md-4">{{ form_row(form.Prix) }}</div>
+    <div class="col-md-4">{{ form_row(form.Libre) }}</div>
+</div>
+<div class="row">
+    <div class="col-md-12">{{ form_row(form.Caract) }}</div>
+</div>
+<div class="row">
+    <div class="col-md-6">{{ form_row(form.imageFile) }}</div>
+    <div class="col-md-6">{{ form_row(form.langages) }}</div>
+</div>
+{{ form_rest(form) }}
+<button class="btn btn-primary">
+    {{ button|default('Enregistrer')}}  
+</button>
+{{ form_end(form) }}
+

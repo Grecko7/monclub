@@ -1,0 +1,11 @@
+{% extends 'base.html.twig'%}
+
+
+
+{% block body %}
+<div class="container mt-4 text-center">
+  <h2 class="text-primary">Rencenser un joueur</h2>
+  {{ include("admin/joueur/_form.html.twig", {form: form, button: 'Valider'}) }}
+</div>
+{% endblock %}  
+ 

@@ -1,0 +1,62 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% if joueur.fileName %}
+                <img src="/images/joueurs/{{ joueur.filename }}" style="width: 800; height:530px" alt="card-img-top">
+                {% else %}
+                <img src="/images/joueurs/empty.jpg" style="width: 800; height:530px" alt="card-img-top">
+                {% endif %}
+            </div>
+            <div class="col-md-4">
+                <h1>{{ joueur.Nom }}</h1>
+                <h2> {{ joueur.age }}ans - {{ joueur.taille }}m </h2>
+                <p style ="font-weight: bold">Statut : {{ joueur.LibreType }} </p>
+                <p> GEN : {{ joueur.niveau }} </p>
+                <p style="font-weight: bold"> Prix : {{ joueur.formattedPrix }}€</p>
+                {% if app.user %}
+                <a  href="{{ path('admin.joueur.edit', {id: joueur.id}) }}" class="btn btn-primary">Modifier le joueur</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Caractéristique</h2>
+            <table class="table table-striped text-center">
+                <tr>
+                    <td> Info</td>
+                    <td> {{ joueur.caract }} </td>
+                </tr>
+                <tr>
+                    <td> Technique </td>
+                    <td> *** </td>
+                </tr>
+                <tr>
+                    <td>Combativité</td>
+                    <td> *** </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-4">
+            <h2>Langues parlés</h2>
+            <ul class="list-group">
+                <ul class="list-group">
+                    {% for key, langage in joueur.langages %}
+                    <li class="list-group-item {{ key%2 == 0 ? 'list-group-item-secondary':'' }}">{{ langage.nom }}</li>
+                    {% endfor %}
+                </ul>
+            </ul>
+        </div>    
+    </div>
+</div>
+
+{% endblock %}
+
+{% block title %}
+{% endblock %}

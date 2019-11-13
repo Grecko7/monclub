@@ -1,0 +1,45 @@
+{% extends 'base.html.twig'%}
+
+{% block title 'Gérer les langages' %}
+
+{% block body %}
+<div class="container mt-4 text-center">
+    <h1 class="text-primary"> Gérer les langages</h1>
+    {% for message in app.flashes('success') %}
+   <div class="alert alert-success">
+       {{ message }}
+   </div>
+    {% endfor %}
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for langage in langages %}
+            <tr>
+                <td> {{langage.nom}} </td>
+                <td> 
+                    <a href="{{ path('admin.langage.edit', {id: langage.id}) }}" class="btn btn-secondary"> Éditer </a>
+                    <form method='post' action="{{ path('admin.langage.delete', {id: langage.id}) }}" style="display: inline-block" onsubmit="return confirm('Cette action va supprimer {{langage.nom}} . Continuer?')">
+                        <input type="hidden" name ="_method" value="DELETE">
+                        <input type="hidden" name ="_token" value="{{ csrf_token('delete' ~ langage.id) }}">
+                        <button class="btn btn-danger">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+            
+        </tbody>
+    </table>
+    <div class="text-right">
+        <a href="{{ path('admin.langage.new')}}" class="btn btn-primary">
+            Créer un nouveau langage
+        </a>
+    </div>
+</div>
+
+
+{% endblock %}  

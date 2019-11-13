@@ -1,0 +1,33 @@
+{% extends 'base.html.twig'%}
+
+{% block title 'Symfony FC' %}
+
+{% block body %}
+<div class="jumbotron text-center">
+    <h1>Bienvenue  sur le site officiel du Symfony FC </h1>
+    <p class="text-primary">Le Symfony FC est une équipe de recruteurs créée pour dénicher la pépite de demain</p>
+</div>
+
+<div class="container">
+    <h2 class="text-center text-primary">Les Joueurs inscrits dans notre DataBase</h2>
+    <div class="row flex mt-4 ">
+        {% for joueur in joueurs %}
+            <div class="col-4 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                            <a href="{{path('joueur.show', {id: joueur.id, slug: joueur.slug } )}}">{{ joueur.Nom }} </a>
+                        </h5>
+                        <p class="card-text"> Âge : {{ joueur.age }} ans </p>
+                        <p class="card-text"> Taille : {{ joueur.taille }}m </p>
+                        <p class="card-text"> Faisabilité : {{ joueur.LibreType }} </p>
+                        <p class="card-text"> Potentiel : {{ joueur.niveau }} / 100</p>
+                        <p class="card-text"> Caractéristique : {{ joueur.caract }} </p>
+                        <p class="card-text"> Prix : {{ joueur.formattedPrix }}€</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}  

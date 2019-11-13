@@ -1,0 +1,11 @@
+{% extends 'base.html.twig'%}
+
+
+
+{% block body %}
+<div class="container mt-4 text-center">
+  <h2 class="text-primary">Créer un langage</h2>
+  {{ include("admin/langage/_form.html.twig", {form: form, button: 'Créer'}) }}
+</div>
+{% endblock %}  
+ 
